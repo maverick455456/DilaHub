@@ -3,90 +3,153 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My Video Site (Demo)</title>
+  <title>My Video Site (Bright)</title>
   <style>
-    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa6b2;--accent:#06b6d4}
-    *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,#071226 0%, #081827 100%);color:#e6eef6;min-height:100vh}
-    header{padding:20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    h1{margin:0;font-size:18px}
-    .container{max-width:1100px;margin:18px auto;padding:0 16px}
-    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-    input[type="text"]{flex:1;min-width:220px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);color:inherit}
-    button{padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#012;cursor:pointer}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
-    .thumb{width:100%;height:140px;object-fit:cover;border-radius:6px;background:#021;display:block}
-    .meta{margin-top:8px}
-    .meta p{margin:0;font-size:13px;color:var(--muted)}
-    footer{padding:18px;text-align:center;color:var(--muted);font-size:13px}
-    /* lightbox */
-    .overlay{position:fixed;inset:0;background:rgba(2,6,23,0.85);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
-    .player{max-width:1000px;width:100%;background:#000;padding:12px;border-radius:10px;box-shadow:0 8px 40px rgba(2,6,23,.6)}
-    .player video{width:100%;height:auto;border-radius:6px;background:#000}
-    .close{position:absolute;right:18px;top:18px;background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
-    /* age gate modal (demo only) */
-    .agegate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(2,6,23,0.9), rgba(2,6,23,0.95));z-index:70}
-    .agebox{background:var(--card);padding:20px;border-radius:10px;max-width:420px;width:100%;text-align:center}
-    .agebox p{color:var(--muted);margin:10px 0 18px}
-    .note{font-size:12px;color:var(--muted);margin-top:10px}
-    @media (max-width:480px){.thumb{height:110px}}
+    :root {
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --muted: #555;
+      --accent: #007bff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
+      color: #111;
+      min-height: 100vh;
+    }
+    header {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    h1 { margin: 0; font-size: 18px; }
+    .container { max-width: 1100px; margin: 20px auto; padding: 0 16px; }
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    input[type="text"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+      color: #111;
+    }
+    button {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 0;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .card {
+      background: var(--card);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .thumb {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #ddd;
+      display: block;
+    }
+    .meta { margin-top: 8px; }
+    .meta p { margin: 0; font-size: 13px; color: var(--muted); }
+    footer {
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 60;
+    }
+    .player {
+      max-width: 1000px;
+      width: 100%;
+      background: #000;
+      padding: 12px;
+      border-radius: 10px;
+    }
+    .player video {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      background: #000;
+    }
+    .close {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      background: transparent;
+      border: 0;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+    }
+    @media (max-width:480px){ .thumb{height:110px;} }
   </style>
 </head>
 <body>
   <header>
     <div style="display:flex;align-items:center;gap:12px">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <rect width="24" height="24" rx="6" fill="#05202a"></rect>
-        <path d="M7 8.5v7l5-3.5L7 8.5z" fill="#06b6d4"></path>
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+        <rect width="24" height="24" rx="6" fill="#e0e7ff"></rect>
+        <path d="M7 8.5v7l5-3.5L7 8.5z" fill="#007bff"></path>
       </svg>
-      <h1>My Video Site — Demo</h1>
+      <h1>My Video Site</h1>
     </div>
-    <div style="font-size:13px;color:var(--muted)">Demo: replace sample videos with your own legal URLs</div>
+    <div style="font-size:13px;color:#666">Demo version</div>
   </header>
 
   <main class="container">
     <section class="controls">
-      <input id="videoUrl" type="text" placeholder="Paste video URL here (mp4 or HLS .m3u8 or YouTube embed)...">
-      <input id="thumbUrl" type="text" placeholder="Optional: thumbnail image URL">
+      <input id="videoUrl" type="text" placeholder="Paste video URL here">
+      <input id="thumbUrl" type="text" placeholder="Optional: thumbnail URL">
       <button id="addBtn">Add Video</button>
-      <button id="clearBtn" style="background:#334155;color:#fff">Clear All</button>
+      <button id="clearBtn" style="background:#999">Clear All</button>
     </section>
 
     <section>
-      <div id="grid" class="grid">
-        <!-- prefilled demo item(s) -->
-      </div>
+      <div id="grid" class="grid"></div>
     </section>
   </main>
 
   <div class="overlay" id="overlay">
-    <div class="player" role="dialog" aria-modal="true">
-      <button class="close" id="closeBtn" title="Close">✕</button>
-      <video id="mainVideo" controls playsinline></video>
+    <div class="player">
+      <button class="close" id="closeBtn">✕</button>
+      <video id="mainVideo" controls></video>
     </div>
   </div>
 
-  <div class="agegate" id="agegate" style="display:none">
-    <div class="agebox" role="dialog" aria-modal="true">
-      <h2>Age Verification (Demo)</h2>
-      <p class="note">You must be 18+ to view adult content. This is only a demo gate — not a secure verification.</p>
-      <div style="display:flex;gap:8px;justify-content:center">
-        <button id="iAm18">I am 18+</button>
-        <button id="not18" style="background:#ef4444;color:#fff">I'm under 18</button>
-      </div>
-      <p class="note">For production, implement proper age verification & comply with local law.</p>
-    </div>
-  </div>
-
-  <footer>Built for testing — replace video links with files you own or public-domain videos.</footer>
+  <footer>Built for testing — replace video links with ones you own or public domain</footer>
 
 <script>
-/* IMPORTANT:
- - This demo will play whatever public mp4/HLS you paste.
- - Do NOT paste copyrighted/adult links unless you have rights.
- - Age gate here is only a simple UX block; not a legal verification.
-*/
-
 const grid = document.getElementById('grid');
 const addBtn = document.getElementById('addBtn');
 const clearBtn = document.getElementById('clearBtn');
@@ -95,19 +158,15 @@ const thumbUrlInput = document.getElementById('thumbUrl');
 const overlay = document.getElementById('overlay');
 const mainVideo = document.getElementById('mainVideo');
 const closeBtn = document.getElementById('closeBtn');
-const agegate = document.getElementById('agegate');
-const iAm18 = document.getElementById('iAm18');
-const not18 = document.getElementById('not18');
 
-let videos = [];
-
-// Preload demo public-domain sample (Big Buck Bunny sample mp4)
-videos.push({
-  id: crypto.randomUUID ? crypto.randomUUID() : Date.now(),
-  title: 'Big Buck Bunny (sample)',
-  url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4',
-  thumb: 'https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217'
-});
+let videos = [
+  {
+    id: Date.now().toString(),
+    title: "Sample Video",
+    url: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4",
+    thumb: "https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
+  }
+];
 
 function render() {
   grid.innerHTML = '';
@@ -115,135 +174,46 @@ function render() {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <img class="thumb" src="${escapeHtml(v.thumb||'')}" alt="${escapeHtml(v.title)}" onerror="this.style.display='none'">
+      <img class="thumb" src="${v.thumb}" alt="">
       <div class="meta">
-        <strong style="display:block">${escapeHtml(v.title)}</strong>
-        <p>URL: ${escapeHtml(v.url)}</p>
+        <strong>${v.title}</strong>
+        <p>${v.url}</p>
         <div style="margin-top:8px;display:flex;gap:8px">
-          <button data-id="${v.id}" class="play">Play</button>
-          <button data-id="${v.id}" class="remove" style="background:#ef4444">Remove</button>
+          <button onclick="playVideo('${v.url}')">Play</button>
+          <button onclick="removeVideo('${v.id}')" style="background:#e74c3c">Remove</button>
         </div>
       </div>`;
     grid.appendChild(card);
   });
-  attachListeners();
 }
-
-function attachListeners(){
-  document.querySelectorAll('.play').forEach(b=>{
-    b.onclick = e=>{
-      const id = e.currentTarget.getAttribute('data-id');
-      const v = videos.find(x=>x.id===id);
-      if(!v) return;
-      // simple age gate demo — show gate if user hasn't confirmed in this session
-      if(!sessionStorage.getItem('acceptedAge')){
-        agegate.style.display = 'flex';
-        agegate.dataset.pending = id;
-        return;
-      }
-      openPlayer(v.url);
-    }
-  });
-  document.querySelectorAll('.remove').forEach(b=>{
-    b.onclick = e=>{
-      const id = e.currentTarget.getAttribute('data-id');
-      videos = videos.filter(x=>x.id!==id);
-      render();
-    }
-  });
-}
-
-function openPlayer(url){
+function playVideo(url){
   overlay.style.display = 'flex';
-  mainVideo.pause();
-  mainVideo.removeAttribute('src');
-  // Basic support: if YouTube link, try embed via youtube-nocookie iframe fallback
-  if(url.includes('youtube.com') || url.includes('youtu.be')){
-    // convert to embed URL
-    const yid = extractYouTubeID(url);
-    if(yid){
-      // fallback: show iframe inside player (replace video element)
-      const iframe = document.createElement('iframe');
-      iframe.width = '100%'; iframe.height = '480';
-      iframe.src = `https://www.youtube-nocookie.com/embed/${yid}?rel=0&autoplay=1`;
-      iframe.allow = 'autoplay; encrypted-media';
-      const wrap = mainVideo.parentElement;
-      // hide video element and append iframe
-      mainVideo.style.display = 'none';
-      // remove old iframe if exists
-      const old = wrap.querySelector('iframe');
-      if(old) old.remove();
-      wrap.appendChild(iframe);
-    } else {
-      alert('Could not parse YouTube link.');
-    }
-  } else {
-    // show <video>
-    // remove any iframe if present
-    const wrap = mainVideo.parentElement;
-    const old = wrap.querySelector('iframe');
-    if(old) old.remove();
-    mainVideo.style.display = '';
-    mainVideo.src = url;
-    mainVideo.play().catch(()=>{ /* autoplay may be blocked */});
-  }
+  mainVideo.src = url;
+  mainVideo.play();
 }
-
-closeBtn.onclick = ()=>{
-  overlay.style.display = 'none';
-  mainVideo.pause();
-  mainVideo.removeAttribute('src');
-  // remove iframe if any
-  const wrap = mainVideo.parentElement;
-  const old = wrap.querySelector('iframe');
-  if(old) old.remove();
+function removeVideo(id){
+  videos = videos.filter(x=>x.id!==id);
+  render();
 }
-
+closeBtn.onclick = ()=>{overlay.style.display='none';mainVideo.pause();}
 addBtn.onclick = ()=>{
   const url = videoUrlInput.value.trim();
-  if(!url){ alert('Paste a video URL first.'); return; }
-  const title = url.split('/').pop().split('?')[0] || 'Video';
-  const thumb = thumbUrlInput.value.trim() || '';
-  videos.unshift({ id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(), title, url, thumb });
-  videoUrlInput.value = ''; thumbUrlInput.value = '';
+  if(!url) return alert('Enter a video URL');
+  videos.push({
+    id: Date.now().toString(),
+    title: 'Custom Video',
+    url,
+    thumb: thumbUrlInput.value.trim() || 'https://via.placeholder.com/300x200?text=No+Thumbnail'
+  });
+  videoUrlInput.value = '';
+  thumbUrlInput.value = '';
   render();
-}
-
-clearBtn.onclick = ()=>{
-  if(!confirm('Clear all videos?')) return;
-  videos = [];
-  render();
-}
-
-iAm18.onclick = ()=>{
-  sessionStorage.setItem('acceptedAge','1');
-  agegate.style.display = 'none';
-  const pending = agegate.dataset.pending;
-  if(pending){
-    const v = videos.find(x=>x.id===pending);
-    if(v) openPlayer(v.url);
-  }
-}
-
-not18.onclick = ()=>{
-  alert('You must be 18+ to view restricted content. Redirecting to home.');
-  agegate.style.display = 'none';
-}
-
-function extractYouTubeID(url){
-  try{
-    const u = new URL(url);
-    if(u.hostname.includes('youtu.be')) return u.pathname.slice(1);
-    if(u.searchParams.has('v')) return u.searchParams.get('v');
-    // fallback: /embed/ID
-    const p = u.pathname.split('/');
-    const idx = p.indexOf('embed');
-    if(idx>=0 && p[idx+1]) return p[idx+1];
-  }catch(e){}
-  return null;
-}
-
-function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+};
+clearBtn.onclick = ()=>{videos=[];render();};
+render();
+</script>
+</body>
+</html>&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
 
 /* initial render */
 render();
