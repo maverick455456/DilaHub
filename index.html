@@ -1,208 +1,199 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="si">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MONEY HEIST OFC SERVICE 🐦‍🔥</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MONEY HEIST OFC SERVICE — Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      background: radial-gradient(circle at top, #5e005e, #1b001b);
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      min-height: 100vh;
+    :root{
+      --bg-a:#2c022f;
+      --bg-b:#550a5b;
+      --accent:#ff5d8f;
+      --card:#2b1328;
+      --glass-border: rgba(255,255,255,0.06);
+      --muted: rgba(255,255,255,0.75);
     }
-    header {
-      padding: 1.5rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg,var(--bg-b) 0%, #1a0417 60%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -webkit-text-size-adjust:100%;
+      text-rendering:optimizeLegibility;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:22px;
     }
-    .card {
-      max-width: 480px;
-      background: rgba(255,255,255,0.08);
-      margin: 2rem auto;
-      padding: 1.5rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+
+    .wrap{width:100%;max-width:460px}
+
+    /* header */
+    .top {
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;
+      padding:10px 12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+      border:1px solid rgba(255,255,255,0.02);
+      box-shadow: 0 6px 18px rgba(3,1,6,0.55);
     }
-    .title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand .logo{
+      width:14px;height:14px;border-radius:50%;
+      background:linear-gradient(135deg,#ffd1ff,#7b6bff);
+      box-shadow:0 0 8px rgba(123,107,255,0.35);
     }
-    a {
-      color: #ff62d5;
-      text-decoration: none;
-      word-break: break-all;
+    .brand h1{margin:0;font-size:15px;font-weight:800;letter-spacing:0.5px}
+    .brand small{display:block;font-size:12px;opacity:0.9;margin-top:2px;font-weight:600}
+
+    /* card */
+    .card{
+      margin:0 0 18px 0;
+      border-radius:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+      border:1px solid var(--glass-border);
+      padding:22px;
+      box-shadow: 0 28px 50px rgba(6,2,10,0.62);
+      backdrop-filter:none; /* remove heavy blur to keep sharp */
     }
-    a:hover {
-      text-decoration: underline;
-    }
-    .link-block {
-      background: rgba(255,255,255,0.06);
-      padding: 0.8rem;
-      border-radius: 10px;
-      margin: 0.5rem 0;
-    }
-    footer {
-      font-size: 0.8rem;
-      opacity: 0.8;
-      margin-top: 2rem;
-      padding-bottom: 1rem;
-    }
-    iframe {
-      width: 100%;
-      height: 250px;
-      border-radius: 12px;
-      margin-top: 10px;
+    .card h2{font-size:26px;margin:0 0 12px 0;letter-spacing:0.4px}
+    .sub{color:var(--muted);font-weight:600;margin-bottom:16px}
+
+    /* button */
+    .cta{
+      display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border-radius:12px;
+      background:linear-gradient(90deg,var(--accent), #9b4bd6);color:#fff;font-weight:700;text-decoration:none;
+      box-shadow: 0 10px 28px rgba(153,60,120,0.16);
       border: none;
+    }
+
+    /* link block */
+    .link {
+      margin-top:16px;
+      padding:12px;border-radius:12px;background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,255,255,0.03);
+      display:block;
+    }
+    .link b{display:block;margin-bottom:6px;font-weight:700}
+    .url{font-size:13px;color:rgba(255,255,255,0.85);word-break:break-all}
+
+    /* media placeholder with clear play svg */
+    .media {
+      margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);
+      background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.3));
+      display:flex;align-items:center;padding:14px;
+    }
+    .thumb {
+      width:86px;height:56px;border-radius:10px;background:linear-gradient(90deg,#220028,#3b0f38);
+      display:flex;align-items:center;justify-content:center;margin-right:12px;flex-shrink:0;
+      box-shadow: inset 0 -6px 18px rgba(0,0,0,0.5);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .play {
+      width:28px;height:28px;display:inline-block;
+    }
+    .media .meta{flex:1;color:var(--muted);font-size:13px}
+
+    /* second card smaller */
+    .small-card{border-radius:16px;padding:18px;margin-top:10px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.04));border:1px solid rgba(255,255,255,0.02)}
+
+    footer{margin-top:18px;padding:12px;text-align:center;font-size:13px;color:rgba(255,255,255,0.85)}
+    a {color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* make text sharp on mobile */
+    @media (max-width:520px){
+      .card h2{font-size:24px}
+      .top {padding:10px}
     }
   </style>
 </head>
 <body>
-  <header>𝗠𝗢𝗡𝗘𝗬 𝗛𝗘𝗜𝗦𝗧 𝗢𝗙𝗖 𝗦𝗘𝗥𝗩𝗜𝗖𝗘 🐦‍🔥</header>
-
-  <div class="card">
-    <div class="title">📌 FREE BOT SERVICE :-</div>
-    <div class="link-block">✅ <b>Create Account :</b><br>
-      <a href="https://www.freebots.store/r/MONEYH2284" target="_blank">https://www.freebots.store/r/MONEYH2284</a>
-    </div>
-
-    <div class="link-block">🎬 <b>Deploy Tutorial (Facebook):</b><br>
-      <a href="https://www.facebook.com/share/v/1BE5gHCLLK/" target="_blank">https://www.facebook.com/share/v/1BE5gHCLLK/</a>
-      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/v/1BE5gHCLLK/" allowfullscreen></iframe>
-    </div>
-
-    <div class="link-block">▶️ <b>Deploy Video (YouTube):</b><br>
-      <a href="https://youtu.be/hyIMnMBY1eY?si=3TpxTNOFVoPWZdOs" target="_blank">https://youtu.be/hyIMnMBY1eY</a>
-      <iframe src="https://www.youtube.com/embed/hyIMnMBY1eY" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="title">📌 CHANNEL REACT SERVICE :-</div>
-    <div class="link-block">💎 <b>React Pack Activated :</b><br>
-      <a href="https://www.facebook.com/share/v/1D8LDo49ur/" target="_blank">https://www.facebook.com/share/v/1D8LDo49ur/</a>
-      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/v/1D8LDo49ur/" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <footer>
-    © 2025 MONEY HEIST OFC — Free Bot Services<br>
-    Automated WhatsApp & Tech Web<br><br>
-    <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contact</a>
-  </footer>
-</body>
-</html>capeHtml(v.url)}</p>
-          <div style="margin-top:10px;display:flex;gap:8px">
-            <button class="btn play" data-url="${escapeHtml(v.url)}">Play</button>
-            <button class="ghost remove" data-id="${escapeHtml(v.id)}">Remove</button>
-          </div>
+  <div class="wrap">
+    <div class="top" role="banner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>MONEY HEIST MD</h1>
+          <small>/ DILA LK</small>
         </div>
-      `;
-      grid.appendChild(c);
-    });
-    attach();
-    return;
-  }
-  alert('No local matches — paste a direct video URL (mp4/m3u8) or YouTube link to add.');
-};
+      </div>
+      <div style="font-weight:700;font-size:18px;opacity:0.95;">☰</div>
+    </div>
 
-clearBtn.onclick = ()=>{
-  if(!confirm('Clear all demo videos?')) return;
-  videos = [];
-  render();
-};
+    <section class="card" role="region" aria-label="Free bot service">
+      <h2>FREE BOT SERVICE :-</h2>
+      <div class="sub">Everything you need to deploy your free bot &amp; channel tools</div>
 
-function isProbablyUrl(s){
-  try{ new URL(s); return true }catch(e){ return false }
-}
-function extractYouTubeID(url){
-  try{
-    const u = new URL(url);
-    if(u.hostname.includes('youtu.be')) return u.pathname.slice(1);
-    if(u.searchParams.has('v')) return u.searchParams.get('v');
-    const p = u.pathname.split('/');
-    const idx = p.indexOf('embed');
-    if(idx>=0 && p[idx+1]) return p[idx+1];
-  }catch(e){}
-  return null;
-}
-function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+      <a class="link" href="https://www.freebots.store/r/MONEYH2284" target="_blank" rel="noopener">
+        <b>✅ Create Account :</b>
+        <div class="url">https://www.freebots.store/r/MONEYH2284</div>
+      </a>
 
-/* initial render */
-render();
-</script>
+      <a class="link" href="https://www.facebook.com/share/v/1BE5gHCLLK/" target="_blank" rel="noopener">
+        <b>🎬 Deploy Tutorial (Facebook):</b>
+        <div class="url">https://www.facebook.com/share/v/1BE5gHCLLK/</div>
+
+        <div class="media" aria-hidden="true">
+          <div class="thumb">
+            <!-- play SVG (sharp) -->
+            <svg class="play" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="11" stroke="rgba(255,255,255,0.06)" stroke-width="1.2" fill="none"/>
+              <path d="M10 8V16L16 12L10 8Z" fill="white"/>
+            </svg>
+          </div>
+          <div class="meta">Open Facebook deploy guide — tap to view video</div>
+        </div>
+      </a>
+
+      <a class="link" href="https://youtu.be/hyIMnMBY1eY" target="_blank" rel="noopener">
+        <b>▶️ Deploy Video (YouTube):</b>
+        <div class="url">https://youtu.be/hyIMnMBY1eY</div>
+        <div class="media" aria-hidden="true">
+          <div class="thumb">
+            <svg class="play" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="3" width="22" height="18" rx="3" stroke="rgba(255,255,255,0.06)" stroke-width="1.2" fill="none"/>
+              <path d="M10 8V16L16 12L10 8Z" fill="white"/>
+            </svg>
+          </div>
+          <div class="meta">YouTube deploy walkthrough — opens in a new tab</div>
+        </div>
+      </a>
+    </section>
+
+    <section class="small-card" role="region" aria-label="Channel react">
+      <h2 style="margin:0 0 8px 0;font-size:22px">CHANNEL REACT SERVICE :-</h2>
+
+      <a class="link" href="https://www.facebook.com/share/v/1D8LDo49ur/" target="_blank" rel="noopener">
+        <b>💎 React Pack Activated :</b>
+        <div class="url">https://www.facebook.com/share/v/1D8LDo49ur/</div>
+
+        <div class="media" aria-hidden="true">
+          <div class="thumb">
+            <svg class="play" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.06)" stroke-width="1.4" fill="none"/>
+              <path d="M10 8V16L16 12L10 8Z" fill="white"/>
+            </svg>
+          </div>
+          <div class="meta">Open channel react demo</div>
+        </div>
+      </a>
+
+      <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+        <div style="color:var(--muted);font-weight:700">Coins: <span style="color:#fff">1010130</span></div>
+        <a class="cta" href="https://www.freebots.store/r/MONEYH2284" target="_blank" rel="noopener">ADD REACT PACK</a>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 MONEY HEIST OFC — Free Bot Services<br>
+      Automated WhatsApp &amp; Tech Web — <a href="#">Privacy</a> · <a href="#">Contact</a>
+    </footer>
+  </div>
 </body>
-</html>s-customizeGlobalCookies\">Customize Cookies<\/button>\n                    <button class=\"buttonBase js-acceptGlobalCookies\">Ok<\/button>\n                <\/div>\n            <\/div>\n        <\/div>\n    ";
-    var shortCookieBannerContent = "\n        <p>Some features may not be available with your selection. For a better browsing experience, you may select <span class=\"cbPrimaryCTA cbSpan\">' Accept all cookies '<\/span><\/p><button class=\"cbCloseButton ph-icon-cross\" title=\"close\"><\/button>\n    ";
-</script>
-  <script type="text/javascript" src="https://ei.phncdn.com/www-static/js/cookieBanner/cookie_banner.js?cache=2025110401"></script>
-  <script type="text/javascript">
-            (function(){
-                var htmlEl = document.documentElement,
-                    el = document.createElement('div'),
-                    supports_grid = typeof el.style.grid === 'string',
-                    className = '';
-
-                if (htmlEl) {
-                    className = supports_grid ? 'gridSupported' : 'gridNotSupported';
-                    htmlEl.classList.add(className);
-                }
-            })();
-        </script>
-  <script>
-            var isCookieConsent =
-                (typeof CookieHelper != 'undefined') && (!CookieHelper.isAllowedCategory('analytics'))
-                    ? 'denied' : 'granted';
-
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'default', {
-                'ad_storage': isCookieConsent,
-                'analytics_storage': isCookieConsent
-            });
-        </script>
-  <script async type="text/javascript">
-				function requestHb(url) {
-					var request = window['XDomainRequest'] ? 
-					new window['XDomainRequest']() : new XMLHttpRequest();
-					var screenWidth = (window && window.screen && window.screen.width) ? window.screen.width : "Unknown";
-					var screenHeight = (window && window.screen && window.screen.height) ? window.screen.height : "Unknown";
-					var url = url + "&width=" + screenWidth + "&height=" + screenHeight;
-
-					var duration = new Date().getTime();
-					request.onload = request.onerror = request.ontimeout = function() {
-						this.response = request.responseText;
-						this.duration = new Date().getTime() - duration;
-						this.status = request.status;
-					}
-
-					request.onprogress = function() {};
-					request.open('GET', url);
-					request.timeout = 10000;
-					request.send();
-				}
-				requestHb('//www.pornhub.com/_xa/ads_batch?ads=true&clientType=mobile&channel[context_page_type]=home&channel[info]=%7B%22actor_id%22%3Anull%2C%22content_type%22%3Anull%2C%22video_id%22%3Anull%2C%22timestamp%22%3A1762310898%2C%22hash%22%3A%2290563e49f6c17ea3e348625745e0e600%22%2C%22session_id%22%3A%22442734990238902489%22%7D&channel[site]=pornhub&site_id=23&device_type=mobile&hbresp=header&hb=06B38CED-97BE-499B-97CA-0D3243FC2085&data=%5B%7B%22spots%22%3A%5B%7B%22zone%22%3A985%7D%2C%7B%22zone%22%3A981%7D%2C%7B%22zone%22%3A2501352%7D%2C%7B%22zone%22%3A2289171%7D%5D%7D%5D&noc=0&dm=www.pornhub.com/_xa');
-			</script>
-  <script type="text/javascript" async>
-			var tjPreloadAds = JSON.parse('{"985":{"url":"\/\/www.pornhub.com\/_xa\/ads_batch?ads=true&clientType=mobile&channel[context_page_type]=home&channel[info]=%7B%22actor_id%22%3Anull%2C%22content_type%22%3Anull%2C%22video_id%22%3Anull%2C%22timestamp%22%3A1762310898%2C%22hash%22%3A%2290563e49f6c17ea3e348625745e0e600%22%2C%22session_id%22%3A%22442734990238902489%22%7D&channel[site]=pornhub&site_id=23&device_type=mobile&hc=06B38CED-97BE-499B-97CA-0D3243FC2085&data=%5B%7B%22spots%22%3A%5B%7B%22zone%22%3A985%7D%5D%7D%5D&noc=0&dm=www.pornhub.com\/_xa"},"981":{"url":"\/\/www.pornhub.com\/_xa\/ads_batch?ads=true&clientType=mobile&channel[context_page_type]=home&channel[info]=%7B%22actor_id%22%3Anull%2C%22content_type%22%3Anull%2C%22video_id%22%3Anull%2C%22timestamp%22%3A1762310898%2C%22hash%22%3A%2290563e49f6c17ea3e348625745e0e600%22%2C%22session_id%22%3A%22442734990238902489%22%7D&channel[site]=pornhub&site_id=23&device_type=mobile&hc=06B38CED-97BE-499B-97CA-0D3243FC2085&data=%5B%7B%22spots%22%3A%5B%7B%22zone%22%3A981%7D%5D%7D%5D&noc=0&dm=www.pornhub.com\/_xa"},"2501352":{"url":"\/\/www.pornhub.com\/_xa\/ads_batch?ads=true&clientType=mobile&channel[context_page_type]=home&channel[info]=%7B%22actor_id%22%3Anull%2C%22content_type%22%3Anull%2C%22video_id%22%3Anull%2C%22timestamp%22%3A1762310898%2C%22hash%22%3A%2290563e49f6c17ea3e348625745e0e600%22%2C%22session_id%22%3A%22442734990238902489%22%7D&channel[site]=pornhub&site_id=23&device_type=mobile&hc=06B38CED-97BE-499B-97CA-0D3243FC2085&data=%5B%7B%22spots%22%3A%5B%7B%22zone%22%3A2501352%7D%5D%7D%5D&noc=0&dm=www.pornhub.com\/_xa"},"2289171":{"url":"\/\/www.pornhub.com\/_xa\/ads_batch?ads=true&clientType=mobile&channel[context_page_type]=home&channel[info]=%7B%22actor_id%22%3Anull%2C%22content_type%22%3Anull%2C%22video_id%22%3Anull%2C%22timestamp%22%3A1762310898%2C%22hash%22%3A%2290563e49f6c17ea3e348625745e0e600%22%2C%22session_id%22%3A%22442734990238902489%22%7D&channel[site]=pornhub&site_id=23&device_type=mobile&hc=06B38CED-97BE-499B-97CA-0D3243FC2085&data=%5B%7B%22spots%22%3A%5B%7B%22zone%22%3A2289171%7D%5D%7D%5D&noc=0&dm=www.pornhub.com\/_xa"}}');
-			var screenWidth = (window && window.screen && window.screen.width) ? window.screen.width : "Unknown";
-			var screenHeight = (window && window.screen && window.screen.height) ? window.screen.height : "Unknown";
-			
-			var TJ_ADS_TAKEOVER = {
-				preloadAds: function() {
-					if (!tjPreloadAds) return;
-
-					for(var i in tjPreloadAds) {
-						TJ_ADS_TAKEOVER.getAd(tjPreloadAds[i]);
-					}
-				},
+</html>			},
 				getAd: function(ad) {
 					var request = window['XDomainRequest'] ? 
 						new window['XDomainRequest']() : new XMLHttpRequest();
