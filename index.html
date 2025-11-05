@@ -1,253 +1,97 @@
 <!doctype html>
 <html lang="si">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MONEY HEIST OFC SERVICE — Preview</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MONEY HEIST OFC SERVICE 💥</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg-a:#2c022f;
-      --bg-b:#550a5b;
-      --accent:#ff5d8f;
-      --card:#2b1328;
-      --glass-border: rgba(255,255,255,0.06);
-      --muted: rgba(255,255,255,0.75);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{box-sizing:border-box;margin:0;padding:0}
     body{
-      margin:0;
-      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background: linear-gradient(180deg,var(--bg-b) 0%, #1a0417 60%);
+      font-family:"Poppins",sans-serif;
+      min-height:100vh;
+      background:linear-gradient(135deg,#5e005e,#d4008e);
       color:#fff;
-      -webkit-font-smoothing:antialiased;
-      -webkit-text-size-adjust:100%;
-      text-rendering:optimizeLegibility;
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       justify-content:center;
-      padding:22px;
+      flex-direction:column;
+      padding:20px;
+      text-align:center;
     }
-
-    .wrap{width:100%;max-width:460px}
-
-    /* header */
-    .top {
-      display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;
-      padding:10px 12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
-      border:1px solid rgba(255,255,255,0.02);
-      box-shadow: 0 6px 18px rgba(3,1,6,0.55);
+    h1{
+      font-size:30px;
+      font-weight:800;
+      letter-spacing:1px;
+      margin-bottom:10px;
+      text-shadow:0 0 10px rgba(255,0,150,0.6);
     }
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand .logo{
-      width:14px;height:14px;border-radius:50%;
-      background:linear-gradient(135deg,#ffd1ff,#7b6bff);
-      box-shadow:0 0 8px rgba(123,107,255,0.35);
+    h2{
+      font-size:18px;
+      font-weight:600;
+      opacity:0.9;
+      margin-bottom:25px;
     }
-    .brand h1{margin:0;font-size:15px;font-weight:800;letter-spacing:0.5px}
-    .brand small{display:block;font-size:12px;opacity:0.9;margin-top:2px;font-weight:600}
-
-    /* card */
     .card{
-      margin:0 0 18px 0;
+      width:100%;
+      max-width:420px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.1);
       border-radius:18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-      border:1px solid var(--glass-border);
-      padding:22px;
-      box-shadow: 0 28px 50px rgba(6,2,10,0.62);
-      backdrop-filter:none; /* remove heavy blur to keep sharp */
+      box-shadow:0 0 30px rgba(255,0,150,0.3);
+      padding:20px;
+      backdrop-filter:blur(6px);
+      margin-bottom:20px;
+      text-align:left;
     }
-    .card h2{font-size:26px;margin:0 0 12px 0;letter-spacing:0.4px}
-    .sub{color:var(--muted);font-weight:600;margin-bottom:16px}
-
-    /* button */
-    .cta{
-      display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border-radius:12px;
-      background:linear-gradient(90deg,var(--accent), #9b4bd6);color:#fff;font-weight:700;text-decoration:none;
-      box-shadow: 0 10px 28px rgba(153,60,120,0.16);
-      border: none;
+    .card b{
+      color:#ff79c6;
+      font-size:15px;
     }
-
-    /* link block */
-    .link {
-      margin-top:16px;
-      padding:12px;border-radius:12px;background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.03));
-      border:1px solid rgba(255,255,255,0.03);
+    .link{
       display:block;
+      color:#fff;
+      text-decoration:none;
+      background:linear-gradient(90deg,#ff007f,#9b00ff);
+      text-align:center;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:700;
+      margin-top:15px;
+      box-shadow:0 4px 18px rgba(255,0,150,0.4);
     }
-    .link b{display:block;margin-bottom:6px;font-weight:700}
-    .url{font-size:13px;color:rgba(255,255,255,0.85);word-break:break-all}
-
-    /* media placeholder with clear play svg */
-    .media {
-      margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);
-      background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.3));
-      display:flex;align-items:center;padding:14px;
-    }
-    .thumb {
-      width:86px;height:56px;border-radius:10px;background:linear-gradient(90deg,#220028,#3b0f38);
-      display:flex;align-items:center;justify-content:center;margin-right:12px;flex-shrink:0;
-      box-shadow: inset 0 -6px 18px rgba(0,0,0,0.5);
-      border:1px solid rgba(255,255,255,0.02);
-    }
-    .play {
-      width:28px;height:28px;display:inline-block;
-    }
-    .media .meta{flex:1;color:var(--muted);font-size:13px}
-
-    /* second card smaller */
-    .small-card{border-radius:16px;padding:18px;margin-top:10px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.04));border:1px solid rgba(255,255,255,0.02)}
-
-    footer{margin-top:18px;padding:12px;text-align:center;font-size:13px;color:rgba(255,255,255,0.85)}
-    a {color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    /* make text sharp on mobile */
-    @media (max-width:520px){
-      .card h2{font-size:24px}
-      .top {padding:10px}
+    .link:hover{opacity:0.85}
+    footer{
+      font-size:13px;
+      opacity:0.8;
+      margin-top:25px;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="top" role="banner">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>MONEY HEIST MD</h1>
-          <small>/ DILA LK</small>
-        </div>
-      </div>
-      <div style="font-weight:700;font-size:18px;opacity:0.95;">☰</div>
-    </div>
+  <h1>💎 MONEY HEIST OFC SERVICE 💎</h1>
+  <h2>Free Bot Deploy & Channel React Links</h2>
 
-    <section class="card" role="region" aria-label="Free bot service">
-      <h2>FREE BOT SERVICE :-</h2>
-      <div class="sub">Everything you need to deploy your free bot &amp; channel tools</div>
+  <div class="card">
+    <p><b>🧠 Free Bot Account:</b><br>
+    <a href="https://www.freebots.store/r/MONEYH2284" class="link" target="_blank">Create Account</a></p>
 
-      <a class="link" href="https://www.freebots.store/r/MONEYH2284" target="_blank" rel="noopener">
-        <b>✅ Create Account :</b>
-        <div class="url">https://www.freebots.store/r/MONEYH2284</div>
-      </a>
+    <p><b>🎬 Deploy Video (Facebook):</b><br>
+    <a href="https://www.facebook.com/share/v/1BE5gHCLLK/" class="link" target="_blank">Watch on Facebook</a></p>
 
-      <a class="link" href="https://www.facebook.com/share/v/1BE5gHCLLK/" target="_blank" rel="noopener">
-        <b>🎬 Deploy Tutorial (Facebook):</b>
-        <div class="url">https://www.facebook.com/share/v/1BE5gHCLLK/</div>
-
-        <div class="media" aria-hidden="true">
-          <div class="thumb">
-            <!-- play SVG (sharp) -->
-            <svg class="play" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="11" stroke="rgba(255,255,255,0.06)" stroke-width="1.2" fill="none"/>
-              <path d="M10 8V16L16 12L10 8Z" fill="white"/>
-            </svg>
-          </div>
-          <div class="meta">Open Facebook deploy guide — tap to view video</div>
-        </div>
-      </a>
-
-      <a class="link" href="https://youtu.be/hyIMnMBY1eY" target="_blank" rel="noopener">
-        <b>▶️ Deploy Video (YouTube):</b>
-        <div class="url">https://youtu.be/hyIMnMBY1eY</div>
-        <div class="media" aria-hidden="true">
-          <div class="thumb">
-            <svg class="play" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1" y="3" width="22" height="18" rx="3" stroke="rgba(255,255,255,0.06)" stroke-width="1.2" fill="none"/>
-              <path d="M10 8V16L16 12L10 8Z" fill="white"/>
-            </svg>
-          </div>
-          <div class="meta">YouTube deploy walkthrough — opens in a new tab</div>
-        </div>
-      </a>
-    </section>
-
-    <section class="small-card" role="region" aria-label="Channel react">
-      <h2 style="margin:0 0 8px 0;font-size:22px">CHANNEL REACT SERVICE :-</h2>
-
-      <a class="link" href="https://www.facebook.com/share/v/1D8LDo49ur/" target="_blank" rel="noopener">
-        <b>💎 React Pack Activated :</b>
-        <div class="url">https://www.facebook.com/share/v/1D8LDo49ur/</div>
-
-        <div class="media" aria-hidden="true">
-          <div class="thumb">
-            <svg class="play" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.06)" stroke-width="1.4" fill="none"/>
-              <path d="M10 8V16L16 12L10 8Z" fill="white"/>
-            </svg>
-          </div>
-          <div class="meta">Open channel react demo</div>
-        </div>
-      </a>
-
-      <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
-        <div style="color:var(--muted);font-weight:700">Coins: <span style="color:#fff">1010130</span></div>
-        <a class="cta" href="https://www.freebots.store/r/MONEYH2284" target="_blank" rel="noopener">ADD REACT PACK</a>
-      </div>
-    </section>
-
-    <footer>
-      © 2025 MONEY HEIST OFC — Free Bot Services<br>
-      Automated WhatsApp &amp; Tech Web — <a href="#">Privacy</a> · <a href="#">Contact</a>
-    </footer>
+    <p><b>▶️ Deploy Video (YouTube):</b><br>
+    <a href="https://youtu.be/hyIMnMBY1eY" class="link" target="_blank">Watch on YouTube</a></p>
   </div>
+
+  <div class="card">
+    <p><b>💎 Channel React Service:</b><br>
+    <a href="https://www.facebook.com/share/v/1D8LDo49ur/" class="link" target="_blank">Activate React Pack</a></p>
+    <p style="margin-top:15px;font-weight:600;">Coins: <span style="color:#fff;">1010130</span></p>
+  </div>
+
+  <footer>© 2025 MONEY HEIST OFC — Powered by DILA HUB</footer>
 </body>
-</html>			},
-				getAd: function(ad) {
-					var request = window['XDomainRequest'] ? 
-						new window['XDomainRequest']() : new XMLHttpRequest();
-					var url = ad.url + "&width" + screenWidth + "&height" + screenHeight;
-					var duration = new Date().getTime();
-					request.onload = request.onerror = request.ontimeout = function() {
-						ad.response = request.responseText;
-						ad.duration = new Date().getTime() - duration;
-						ad.status = request.status;
-						if (typeof window.tjPreloadEmbeddedAds === 'function') {
-							window.tjPreloadEmbeddedAds();
-						}
-					}
-					
-					request.onprogress = function() {}; // IE9 fix
-					request.open('GET', url + "&width=" + screenWidth + "&height=" + screenHeight);
-					request.timeout = 10000; // IE9 fix
-					request.send();
-				}
-			};
-
-			TJ_ADS_TAKEOVER.preloadAds();
-		</script>
-  <meta name="adsbytrafficjunkycontext" data-hb-guid="06B38CED-97BE-499B-97CA-0D3243FC2085" data-custom-param="&amp;noc=0" data-platform="mobile" data-site="pornhub" data-site-id="23" data-context-page-type="home" data-info="{&quot;actor_id&quot;:null,&quot;content_type&quot;:null,&quot;video_id&quot;:null,&quot;timestamp&quot;:1762310898,&quot;hash&quot;:&quot;90563e49f6c17ea3e348625745e0e600&quot;,&quot;session_id&quot;:&quot;442734990238902489&quot;}" data-refresh-times="2" data-refresh-delay="240" data-domain-rewrite="www.pornhub.com/_xa">
-  <script async>
-							var tjEmbeddedAdsDuration = new Date().getTime();
-						(function(env) {
-				var addTjScript = function (url) {
-					var script   = document.createElement('script');
-					script.type  = 'text/javascript';
-					script.async = true;
-					script.src   =  url;
-
-					document.getElementsByTagName('head')[0].appendChild(script);
-				}
-
-				
-					var supportsES6 = function() {
-						try {
-							new Function('(a = 0) => a');
-
-							if (/(iPhone|iPod|iPad)/i.test(navigator.userAgent)) { // IOS10 fix
-								return parseInt(navigator.userAgent.match(/OS [\d_]+/i)[0].substr(3).split('_')[0]) !== 10;
-							}
-
-							return true;
-						}
-						catch (err) {
-							return false;
-						}
-					}();
-
-					var version = 'es5';
-					if (typeof Promise !== 'undefined' && Promise.toString().indexOf('[native code]') !== -1 && supportsES6) {
+</html> (typeof Promise !== 'undefined' && Promise.toString().indexOf('[native code]') !== -1 && supportsES6) {
 						version = 'es6';
 					}
 
