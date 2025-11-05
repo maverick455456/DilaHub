@@ -1,58 +1,121 @@
 <!doctype html>
 <html lang="si">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>DILA HUB — Video Demo</title>
-
-  <meta name="description" content="Demo video hub — replace videos with files you own or public-domain sources.">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DILA LK HUB</title>
+  <meta name="description" content="DILA LK HUB — demo video hub. Replace videos with files you own or public domain." />
   <style>
     :root{
-      --bg:#f8fafc; --card:#fff; --muted:#556; --accent:#0ea5e9;
+      --bg:#0b0b0b;     /* dark background */
+      --panel:#0f1720;
+      --muted:#9aa6b2;
+      --accent:#ff6a00; /* orange accent */
+      --card:#0d1114;
+      --glass: rgba(255,255,255,0.03);
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:#102a43;min-height:100vh}
-    header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#fff;border-bottom:1px solid rgba(2,6,23,.04)}
-    header h1{margin:0;font-size:18px}
-    .container{max-width:1100px;margin:18px auto;padding:0 16px}
-    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
-    input[type="text"]{flex:1;min-width:180px;padding:10px;border-radius:8px;border:1px solid #e2e8f0;background:#fff}
-    button{padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#012;cursor:pointer}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-    .card{background:var(--card);padding:10px;border-radius:10px;box-shadow:0 6px 18px rgba(12,24,40,.06)}
-    .thumb{width:100%;height:140px;object-fit:cover;border-radius:6px;background:#e6eef6;display:block}
-    .meta{margin-top:8px}
-    .meta strong{display:block}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#070707 0%, #0b0b0b 100%);
+      color:#e6eef6; -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* header */
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 18px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      position:sticky;top:0;z-index:40;
+      backdrop-filter: none;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:44px;height:44px;border-radius:6px;background:var(--card);
+      display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03);
+    }
+    .logo svg{display:block}
+    h1{font-size:16px;margin:0;font-weight:600}
+    .sub{font-size:13px;color:var(--muted)}
+
+    /* controls */
+    .controls{display:flex;gap:10px;align-items:center}
+    .search{
+      display:flex;align-items:center;background:var(--panel);padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);
+    }
+    .search input{background:transparent;border:0;color:inherit;outline:none;padding:8px 10px;width:320px;max-width:45vw}
+    .btn{background:var(--accent);color:#0b0b0b;padding:9px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;color:var(--muted)}
+
+    /* layout */
+    .container{max-width:1200px;margin:18px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.03);
+      box-shadow:0 6px 18px rgba(2,6,23,0.6);
+    }
+    .thumb{width:100%;height:140px;object-fit:cover;border-radius:6px;background:#000;display:block}
+    .meta{margin-top:10px}
+    .meta b{display:block}
     .meta p{margin:6px 0 0;color:var(--muted);font-size:13px;word-break:break-all}
-    footer{padding:16px;text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
-    .overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,.7);z-index:60;padding:20px}
-    .player{width:100%;max-width:980px;background:#000;padding:12px;border-radius:10px;position:relative}
-    .player video{width:100%;height:auto;border-radius:6px;background:#000}
-    .close{position:absolute;right:12px;top:8px;background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
-    @media (max-width:480px){ .thumb{height:110px} }
-    /* Safety: disable potential leftover filters */
-    *{ -webkit-backdrop-filter:none !important; backdrop-filter:none !important; filter:none !important; opacity:1 !important; }
+
+    /* overlay player */
+    .overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.85);z-index:80;padding:20px}
+    .player{width:100%;max-width:1000px;background:#000;border-radius:10px;padding:12px;position:relative}
+    .player video{width:100%;height:auto;border-radius:6px;background:#000;display:block}
+    .close{position:absolute;right:12px;top:10px;background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
+
+    /* responsive */
+    @media (max-width:720px){
+      .search input{width:180px;max-width:38vw}
+      .thumb{height:120px}
+    }
+    @media (max-width:420px){
+      header{padding:10px}
+      .search input{width:140px}
+      .btn{padding:8px 10px}
+      .thumb{height:100px}
+    }
+
+    /* Ensure no external overlay filters remain */
+    *{ -webkit-backdrop-filter:none !important; backdrop-filter:none !important; filter:none !important; opacity:1 !important;}
   </style>
 </head>
 <body>
   <header>
-    <div style="display:flex;gap:12px;align-items:center">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <rect width="24" height="24" rx="6" fill="#e6f6ff"></rect>
-        <path d="M7 8.5v7l5-3.5L7 8.5z" fill="#0ea5e9"></path>
-      </svg>
-      <h1>DILA HUB — Demo</h1>
+    <div class="brand">
+      <div class="logo" aria-hidden>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="24" height="24" rx="5" fill="#0b0b0b"/>
+          <path d="M6 7v10l6-5L6 7z" fill="#ff6a00"/>
+        </svg>
+      </div>
+      <div>
+        <h1>DILA LK HUB</h1>
+        <div class="sub">Demo • Clean UI (dark + orange)</div>
+      </div>
     </div>
-    <div style="font-size:13px;color:var(--muted)">Replace videos with files you own or public-domain sources</div>
+
+    <div class="controls">
+      <div class="search" role="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="opacity:.8;margin-left:6px">
+          <path d="M11 19a8 8 0 1 1 5.292-14.292A8 8 0 0 1 11 19z" stroke="#cbd5e1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 21l-4.35-4.35" stroke="#cbd5e1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <input id="search" placeholder="Search videos or paste URL..." aria-label="Search"/>
+      </div>
+      <button id="addBtn" class="btn">Add</button>
+      <button id="clearBtn" class="ghost">Clear</button>
+    </div>
   </header>
 
   <main class="container">
-    <section class="controls">
-      <input id="videoUrl" type="text" placeholder="Paste video URL (mp4 / m3u8 / YouTube)...">
-      <input id="thumbUrl" type="text" placeholder="Optional thumbnail URL">
-      <button id="addBtn">Add</button>
-      <button id="clearBtn" style="background:#94a3b8;color:#fff">Clear</button>
+    <section style="margin-bottom:14px;color:var(--muted);font-size:13px">
+      Tip: Paste a public mp4 / m3u8 / YouTube link in the search box and click Add. Use only videos you own or are licensed to use.
     </section>
 
     <section>
@@ -62,126 +125,169 @@
 
   <div id="overlay" class="overlay" aria-hidden="true">
     <div class="player" role="dialog" aria-modal="true">
-      <button id="closeBtn" class="close" aria-label="Close">✕</button>
-      <video id="mainVideo" controls playsinline></video>
+      <button id="close" class="close" aria-label="Close">✕</button>
+      <div id="playerWrap">
+        <video id="player" controls playsinline></video>
+      </div>
     </div>
   </div>
 
-  <footer>Demo site — do not use copyrighted/adult content without rights.</footer>
+  <footer style="padding:16px;text-align:center;color:var(--muted);font-size:13px">
+    DILA LK HUB — demo site. Do not upload copyrighted/adult material without permission.
+  </footer>
 
 <script>
-/* DEMO: plays public mp4s / YouTube embeds (no third-party adult scripts) */
+/* DILA LK HUB — demo logic */
+/* NOTE: This demo intentionally does NOT include any adult content nor age verification. */
+/* Use only public-domain or your own hosted video files. */
+
 const grid = document.getElementById('grid');
+const search = document.getElementById('search');
 const addBtn = document.getElementById('addBtn');
 const clearBtn = document.getElementById('clearBtn');
-const videoUrlInput = document.getElementById('videoUrl');
-const thumbUrlInput = document.getElementById('thumbUrl');
 const overlay = document.getElementById('overlay');
-const mainVideo = document.getElementById('mainVideo');
-const closeBtn = document.getElementById('closeBtn');
+const player = document.getElementById('player');
+const close = document.getElementById('close');
+const playerWrap = document.getElementById('playerWrap');
 
 let videos = [
   {
-    id: 'demo1',
+    id: 'demo-bbb',
     title: 'Big Buck Bunny (sample)',
     url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4',
     thumb: 'https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217'
+  },
+  {
+    id: 'demo-sintel',
+    title: 'Sintel (short sample)',
+    url: 'https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_1MB.mp4',
+    thumb: 'https://durian.blender.org/wp-content/uploads/2010/05/sintel_poster.jpg'
   }
 ];
 
 function render(){
   grid.innerHTML = '';
-  videos.forEach(v=>{
-    const el = document.createElement('div');
-    el.className = 'card';
-    el.innerHTML = `
+  videos.forEach(v => {
+    const c = document.createElement('div');
+    c.className = 'card';
+    c.innerHTML = `
       <img class="thumb" src="${escapeHtml(v.thumb||'')}" alt="${escapeHtml(v.title)}" onerror="this.style.display='none'">
       <div class="meta">
-        <strong>${escapeHtml(v.title)}</strong>
+        <b>${escapeHtml(v.title)}</b>
         <p>${escapeHtml(v.url)}</p>
-        <div style="margin-top:8px;display:flex;gap:8px">
-          <button data-url="${escapeHtml(v.url)}" class="play">Play</button>
-          <button data-id="${v.id}" class="remove" style="background:#ef4444;color:#fff">Remove</button>
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="btn play" data-url="${escapeHtml(v.url)}">Play</button>
+          <button class="ghost remove" data-id="${escapeHtml(v.id)}">Remove</button>
         </div>
-      </div>`;
-    grid.appendChild(el);
+      </div>
+    `;
+    grid.appendChild(c);
   });
   attach();
 }
 
 function attach(){
-  document.querySelectorAll('.play').forEach(b=>b.onclick = e=>{
-    const url = e.currentTarget.getAttribute('data-url');
-    openPlayer(url);
+  document.querySelectorAll('.play').forEach(b=>{
+    b.onclick = e => {
+      const url = b.getAttribute('data-url');
+      openPlayer(url);
+    };
   });
-  document.querySelectorAll('.remove').forEach(b=>b.onclick = e=>{
-    const id = e.currentTarget.getAttribute('data-id');
-    videos = videos.filter(x=>x.id!==id);
-    render();
+  document.querySelectorAll('.remove').forEach(b=>{
+    b.onclick = e => {
+      const id = b.getAttribute('data-id');
+      videos = videos.filter(x=>x.id!==id);
+      render();
+    };
   });
 }
 
 function openPlayer(url){
-  // handle youtube links via embed
+  // YouTube links -> embed via youtube-nocookie
   if(url.includes('youtube.com') || url.includes('youtu.be')){
     const id = extractYouTubeID(url);
     if(id){
-      // create iframe inside overlay
-      const wrap = mainVideo.parentElement;
-      mainVideo.style.display = 'none';
-      mainVideo.pause();
-      mainVideo.removeAttribute('src');
-      const old = wrap.querySelector('iframe');
+      player.style.display = 'none';
+      const old = playerWrap.querySelector('iframe');
       if(old) old.remove();
-      const ifr = document.createElement('iframe');
-      ifr.width = '100%';
-      ifr.height = '480';
-      ifr.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&autoplay=1`;
-      ifr.allow = 'autoplay; encrypted-media; fullscreen';
-      wrap.appendChild(ifr);
+      const iframe = document.createElement('iframe');
+      iframe.width = '100%';
+      iframe.height = '480';
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.allow = 'autoplay; encrypted-media; fullscreen';
+      iframe.frameBorder = '0';
+      playerWrap.appendChild(iframe);
       overlay.style.display = 'flex';
       overlay.setAttribute('aria-hidden','false');
       return;
     }
   }
-  // regular video
-  // remove iframe if present
-  const wrap = mainVideo.parentElement;
-  const old = wrap.querySelector('iframe');
+  // normal video
+  const old = playerWrap.querySelector('iframe');
   if(old) old.remove();
-  mainVideo.style.display = '';
-  mainVideo.src = url;
+  player.style.display = '';
+  player.src = url;
   overlay.style.display = 'flex';
   overlay.setAttribute('aria-hidden','false');
-  mainVideo.play().catch(()=>{/* autoplay blocked on mobile */});
+  player.play().catch(()=>{ /* autoplay may be blocked on mobile */ });
 }
 
-closeBtn.onclick = ()=>{
+close.onclick = ()=>{
   overlay.style.display = 'none';
   overlay.setAttribute('aria-hidden','true');
-  mainVideo.pause();
-  mainVideo.removeAttribute('src');
-  const wrap = mainVideo.parentElement;
-  const old = wrap.querySelector('iframe');
+  player.pause();
+  player.removeAttribute('src');
+  const old = playerWrap.querySelector('iframe');
   if(old) old.remove();
 };
 
 addBtn.onclick = ()=>{
-  const url = videoUrlInput.value.trim();
-  if(!url){ alert('Paste a video URL.'); return; }
-  const thumb = thumbUrlInput.value.trim() || '';
-  const title = url.split('/').pop().split('?')[0] || 'Video';
-  videos.unshift({ id: Date.now().toString(), title, url, thumb });
-  videoUrlInput.value = ''; thumbUrlInput.value = '';
-  render();
+  const text = search.value.trim();
+  if(!text) return alert('Paste a video URL or search term in the box first.');
+  // If it looks like a URL, add to videos
+  if(isProbablyUrl(text)){
+    const id = 'vid-' + Date.now();
+    const title = text.split('/').pop().split('?')[0] || 'Video';
+    videos.unshift({id, title, url:text, thumb: ''});
+    search.value = '';
+    render();
+    return;
+  }
+  // Otherwise treat as simple search/filter (client-side)
+  const q = text.toLowerCase();
+  const filtered = videos.filter(v=>v.title.toLowerCase().includes(q) || v.url.toLowerCase().includes(q));
+  if(filtered.length){
+    // show only matched (temporary)
+    grid.innerHTML = '';
+    filtered.forEach(v=>{
+      const c = document.createElement('div');
+      c.className = 'card';
+      c.innerHTML = `
+        <img class="thumb" src="${escapeHtml(v.thumb||'')}" alt="${escapeHtml(v.title)}" onerror="this.style.display='none'">
+        <div class="meta"><b>${escapeHtml(v.title)}</b><p>${escapeHtml(v.url)}</p>
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button class="btn play" data-url="${escapeHtml(v.url)}">Play</button>
+            <button class="ghost remove" data-id="${escapeHtml(v.id)}">Remove</button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(c);
+    });
+    attach();
+    return;
+  }
+  alert('No local matches — paste a direct video URL (mp4/m3u8) or YouTube link to add.');
 };
 
 clearBtn.onclick = ()=>{
-  if(!confirm('Clear all videos?')) return;
+  if(!confirm('Clear all demo videos?')) return;
   videos = [];
   render();
 };
 
+function isProbablyUrl(s){
+  try{ new URL(s); return true }catch(e){ return false }
+}
 function extractYouTubeID(url){
   try{
     const u = new URL(url);
@@ -193,15 +299,13 @@ function extractYouTubeID(url){
   }catch(e){}
   return null;
 }
+function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
 
-function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
-
+/* initial render */
 render();
 </script>
 </body>
-</html>v>\n                                <label class=\"customizeToggleSwitch\" for=\"advertisingCookies\">\n                                    <input type=\"checkbox\" id=\"advertisingCookies\" value=\"32\">\n                                    <div class=\"slider round mobileBtn\">\n                                        <span class=\"toggle-icon\"><\/span>\n                                    <\/div>\n                                <\/label>\n                                <p style=\"margin-left:0px;text-align:justify;\">These cookies enable us to make the Website more relevant to your interests and to help us serve ads that might be of interest to you. The Website and our advertising partners set these cookies to provide behavioural advertising and define the number of ads that will be displayed to you. Collected data can be any type of browsing information necessary to understand your browsing habits. If you choose to disable this type of cookies, you will still see advertisements, but they will be less relevant and will not be tailored to your interests.<\/p>\n                            <\/div>\n                        <\/div>\n                    <\/div>\n                <\/div>\n            <div>\n        <\/div>";
-    var isGlobalCookieBanner = 1;
-    var globalCookieBannerContent = "\n        <div class=\"globalCookieBanner\">\n            <div class=\"globalCookieBanner__wrapper\">\n                <i class=\"globalCookieBanner__icon bg-cookie\"><\/i>\n\n                <div class=\"globalCookieBanner__content\">This site uses cookies to help improve your user experience. Learn more about how we use cookies in our <a href=\"https:\/\/www.pornhub.com\/information\/cookie-notice\">Cookie Notice<\/a>.\n                    <button class=\"globalCookieBanner__close js-closeGlobalBanner\">\n                        <i class=\"ph-icon-cross\"><\/i>\n                    <\/button>\n                <\/div>\n                <div class=\"globalCookieBanner__buttons\">\n                    <button class=\"buttonBase js-customizeGlobalCookies\">Customize Cookies<\/button>\n                    <button class=\"buttonBase js-acceptGlobalCookies\">Ok<\/button>\n                <\/div>\n            <\/div>\n        <\/div>\n    ";
+</html>s-customizeGlobalCookies\">Customize Cookies<\/button>\n                    <button class=\"buttonBase js-acceptGlobalCookies\">Ok<\/button>\n                <\/div>\n            <\/div>\n        <\/div>\n    ";
     var shortCookieBannerContent = "\n        <p>Some features may not be available with your selection. For a better browsing experience, you may select <span class=\"cbPrimaryCTA cbSpan\">' Accept all cookies '<\/span><\/p><button class=\"cbCloseButton ph-icon-cross\" title=\"close\"><\/button>\n    ";
 </script>
   <script type="text/javascript" src="https://ei.phncdn.com/www-static/js/cookieBanner/cookie_banner.js?cache=2025110401"></script>
